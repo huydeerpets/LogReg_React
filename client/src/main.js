@@ -1,9 +1,19 @@
 var React = require('react'),
-    ReactDOM = require('react-dom')
+    ReactDOM = require('react-dom'),
+    Login = require('./Login'),
+    Register = require('./Register');
 
 var App = React.createClass({
+    onRegister: function(data){
+        console.log(data)
+    },
     render: function(){
-        return <h1>hello world.</h1>
+        return (
+            <div>
+                <Register onSubmit = {this.onRegister}/>
+                <Login/>
+            </div>
+        )
     }
 })
 

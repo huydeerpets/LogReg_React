@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongoob://localhost/reactLog');
+mongoose.connect('mongodb://localhost/reactLog');
 var fs = require('fs'),
     path = require('path'),
     models_path = path.join(__dirname, '../models')

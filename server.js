@@ -18,13 +18,9 @@ app.use(session({
 app.use(express.static(path.join(root, 'client')));
 app.use(bp.json())
 
-// set the route path and initialized API
-router.get('/', function(req,res){
-    res.json({message: "API initialized"})
-})
-
-app.use('/api', router);
+require('./server/config/mongoose.js');
+require('./server/config/routes.js')(app);
 
 app.listen(port, function(){
-    console.log('API is listening on port: 3000')
+    console.log('Server is listening on port: 3000')
 })

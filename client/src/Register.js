@@ -17,9 +17,6 @@ var Register = React.createClass({
     handleInputChange: function(key, event){
         var stateObj = this.state;
         stateObj[key] = event.target.value;
-        // if(stateObj['password'] || stateObj['confirm']){
-        //     stateObj['password'] = bcrypt.hashSync(stateObj['password'], bcrypt.genSaltSync(8));
-        // }
         console.log(stateObj)
         this.setState(stateObj);
     },

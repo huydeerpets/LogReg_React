@@ -1,23 +1,32 @@
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    Login = require('./Login'),
-    Register = require('./Register'),
-    axios = require('axios');
+import {Router, Route, hashHistory} from 'react-router'
+import {render} from 'react-dom'
+import React from 'react'
+import axios from 'axios'
+import Login from './Login'
+import Register from './Register'
+import Dashboard from './Dashboard'
+
 
 var App = React.createClass({
-    onRegister: function(data){
-        console.log(data, 'onReg');
+    onRegister(data){
         axios.post('/register', data).then(function(response){
-            console.log(response.data)
+            if(response.data.status){
+                hashHistory.push('/dashboard')
+            } else {
+                console.log(response.data.message)
+            }
         })
     },
-    onLogin: function(data){
-        console.log(data, 'onLog');
+    onLogin(data){
         axios.post('/login', data).then(function(response){
-            console.log(response.data)
+            if(response.data.status){
+                hashHistory.push('/dashboard')
+            } else {
+                console.log(response.data.message)
+            }
         })
-    }
-    render: function(){
+    },
+    render(){
         return (
             <div>
                 <Register onSubmit = {this.onRegister}/>
@@ -27,4 +36,11 @@ var App = React.createClass({
     }
 })
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+var routes = (
+    <Router history={hashHistory}>
+        <Route path='/' component={App}/>
+        <Route path='/dashboard' component={Dashboard}/>
+    </Router>
+)
+
+render( routes, document.getElementById('app'))

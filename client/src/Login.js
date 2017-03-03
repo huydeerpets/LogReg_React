@@ -1,22 +1,22 @@
-var React = require('react')
+import React from 'react'
 
-var Login = React.createClass({
-    getInitialState: function(){
+export default React.createClass({
+    getInitialState(){
         return {
             email: null,
             password: null
         }
     },
-    login: function(e){
+    login(e){
         e.preventDefault();
         this.props.onLogin(this.state)
     },
-    handleInputChange: function(key, event){
+    handleInputChange(key, event){
         var stateObj = this.state;
         stateObj[key] = event.target.value;
         this.setState(stateObj)
     },
-    render: function(){
+    render(){
         return (
             <div>
                 <form onSubmit={this.login} method='post'>
@@ -35,5 +35,3 @@ var Login = React.createClass({
         )
     }
 })
-
-module.exports = Login

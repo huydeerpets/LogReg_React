@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react'
 
-var Register = React.createClass({
-    getInitialState: function(){
+export default React.createClass({
+    getInitialState(){
         return {
             username: null,
             email: null,
@@ -9,18 +9,16 @@ var Register = React.createClass({
             confirm: null,
         }
     },
-    register: function(e){
+    register(e){
         e.preventDefault()
-        console.log(this.state)
         this.props.onSubmit(this.state)
     },
-    handleInputChange: function(key, event){
+    handleInputChange(key, event){
         var stateObj = this.state;
         stateObj[key] = event.target.value;
-        console.log(stateObj)
         this.setState(stateObj);
     },
-    render: function(){
+    render(){
         return (
             <div>
                 <form onSubmit={this.register} method='post'>
@@ -45,5 +43,3 @@ var Register = React.createClass({
         )
     }
 })
-
-module.exports = Register
